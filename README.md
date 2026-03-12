@@ -1,5 +1,19 @@
-# simple-rag-demo
+# Simple RAG Demo
 A Simple RAG demo project
+
+## Goal
+
+Understand the **core mechanics of Retrieval-Augmented Generation (RAG)** by implementing a minimal working example and observing how the main components interact.
+
+## What the Demo Shows
+
+- Loading a **simple text knowledge base**
+- Splitting the text into **paragraph-based chunks**
+- Creating **embeddings** using `paraphrase-multilingual-mpnet-base-v2`
+- Storing vectors in a **FAISS vector index**
+- Retrieving the **most relevant chunks** for a user query
+- Constructing a **RAG prompt** using the retrieved context
+- Generating an answer with **Azure OpenAI GPT-4o**
 
 ## Setup
 
