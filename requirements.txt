@@ -3,3 +3,5 @@ faiss-cpu
 python-dotenv
 numpy
 jupyter
+sentence-transformers
+torch
