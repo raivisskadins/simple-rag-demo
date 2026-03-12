@@ -12,7 +12,6 @@ AZURE_OPENAI_API_KEY=your_key_here
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_VERSION=2024-02-01
 AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4o
-AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-large
 ```
 You can use the `.env.example` file to create your own `.env` file. The `.env` file is a local configuration file that will not be saved in Git (it's excluded via `.gitignore`). 
 
