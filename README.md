@@ -1,27 +1,36 @@
-# simple-rag-demo
+# Simple RAG Demo
 A Simple RAG demo project
 
-## Setup
+## Goal
+
+Understand the **core mechanics of Retrieval-Augmented Generation (RAG)** by implementing a minimal working example and observing how the main components interact.
+
+## What the Demo Shows
+
+- Loading a **simple text knowledge base**
+- Splitting the text into **paragraph-based chunks**
+- Creating **embeddings** using `paraphrase-multilingual-mpnet-base-v2`
+- Storing vectors in a **FAISS vector index**
+- Retrieving the **most relevant chunks** for a user query
+- Constructing a **RAG prompt** using the retrieved context
+- Generating an answer with **Azure OpenAI GPT-4o**
+
+## Setup locally
 
 1. First of all, you will need Python. This notebook has been tested with version 3.12.0, but it should also be compatible with other recent versions.
 2. Clone the repository.
-3. Create a `.env` file in the root directory with your secrets:
+3. Configure secrets
 
+Create a `.env` file in the root directory with your secrets:
 ```
 AZURE_OPENAI_API_KEY=your_key_here
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_VERSION=2024-02-01
 AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4o
 ```
-You can use the `.env.example` file to create your own `.env` file. The `.env` file is a local configuration file that will not be saved in Git (it's excluded via `.gitignore`). 
 
-The secrets neccesary to access the LLM can be obtained from Azure.
-
-The Azure OpenAI *gpt-4o* model is used for generating answers. To obtain access to this model, an Azure OpenAI resource must be created in [portal.azure.com](https://portal.azure.com/). After that, open [Azure OpenAI Studio](https://oai.azure.com/), select *Deployments*, and deploy the **gpt-4o** model. The value of *Deployment name* should be the same as the *Model name* — `gpt-4o`.
-
-See more details [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/overview).
-
-The `.env` file must contain the corresponding configuration values for the model: `AZURE_OPENAI_KEY`, `AZURE_ENDPOINT`, and `AZURE_OPENAI_VERSION`.
+You can use the `.env.example` file to create your own `.env` file.  
+The `.env` file is a local configuration file that will not be saved in Git (it is excluded via `.gitignore`).
 
 4. setup a virtual environment and activate it.
 
@@ -43,6 +52,66 @@ pip install -r requirements.txt
 ```
 
 5. Open the notebook `simple_rag_demo.ipynb` and run the cells.
+
+## Setup in Google Colab
+
+If you run the notebook in Google Colab, you should store your secrets using the **Colab Secrets** feature.
+
+### 1. Set secrets in Colab
+
+1. Open the notebook in Colab.
+2. In the left sidebar, click the **🔑 Secrets** tab.
+3. Click **Add new secret**.
+4. Add the following keys and their values:
+
+```
+AZURE_OPENAI_API_KEY
+AZURE_OPENAI_ENDPOINT
+AZURE_OPENAI_API_VERSION
+AZURE_OPENAI_CHAT_DEPLOYMENT
+```
+
+Example values:
+```
+AZURE_OPENAI_API_KEY=your_key_here
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_API_VERSION=2024-02-01
+AZURE_OPENAI_CHAT_DEPLOYMENT=gpt-4o
+```
+
+The notebook automatically reads these values from Colab Secrets when running in Colab, so no `.env` file is required.
+
+---
+
+### 2. Clone the repository and install dependencies
+
+When running the notebook in Colab for the first time, you also need to clone the repository and install the required packages.
+
+In the first notebook cell, uncomment and run the following commands:
+
+```python
+# Run once when setting up the project in Colab
+#!git clone https://github.com/raivisskadins/simple-rag-demo.git
+#%cd simple-rag-demo
+
+# Run once if packages are missing (required also for Colab)
+#!pip install -r requirements.txt
+```
+`git clone` downloads the project into the Colab environment.
+
+`%cd simple-rag-demo` sets the working directory to the project folder.
+
+`pip install -r requirements.txt` installs all required Python packages.
+
+## Getting Azure Secrets
+
+The secrets necessary to access the LLM can be obtained from Azure.
+
+The Azure OpenAI *gpt-4o* model is used for generating answers. To obtain access to this model, an Azure OpenAI resource must be created in [portal.azure.com](https://portal.azure.com/). After that, open [Azure OpenAI Studio](https://oai.azure.com/), select *Deployments*, and deploy the **gpt-4o** model. The value of *Deployment name* should be the same as the *Model name* — `gpt-4o`.
+
+See more details [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/overview).
+
+The `.env` file must contain the corresponding configuration values for the model: `AZURE_OPENAI_KEY`, `AZURE_ENDPOINT`, and `AZURE_OPENAI_VERSION`.
 
 ## License
 
